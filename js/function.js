@@ -17,9 +17,7 @@ class weatherForecast {
     let filtred = cities
       .filter(n => n.city.includes(input))
       .map(v => {
-        (city.innerHTML = v.city),
-          (temp.innerHTML = v.Celcius + CF),
-          (data.innerHTML = v.Data);
+        (city.innerHTML = v.city),(temp.innerHTML = v.Celcius + CF),(data.innerHTML = v.Data);
       });
   }
 }
