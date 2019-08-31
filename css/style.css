@@ -36,7 +36,10 @@ sup {
   color: rgb(0, 204, 255);
   cursor: pointer;
 }
-
+#F {
+  color: rgb(0, 204, 255);
+  cursor: pointer;
+}
 #F:hover {
   color: rgb(0, 204, 255);
   cursor: pointer;
