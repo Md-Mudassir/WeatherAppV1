@@ -1,0 +1,50 @@
+select {
+  height: 26px;
+  width: 40%;
+  font-size: 17px;
+}
+body {
+  background-color: rgb(245, 243, 243);
+  font-family: sans-serif;
+}
+.container {
+  margin-left: 38%;
+}
+
+.Weather {
+  margin-top: 16%;
+}
+
+h3 {
+  font-size: 1.8em;
+}
+
+.deg {
+  font-size: 1em;
+}
+
+#pick {
+  /* height: 10%; */
+  width: 40%;
+}
+
+sup {
+  font-size: 0.4em;
+}
+
+#C:hover {
+  color: rgb(0, 204, 255);
+  cursor: pointer;
+}
+
+#F:hover {
+  color: rgb(0, 204, 255);
+  cursor: pointer;
+}
+
+#temp {
+  font-size: 3em;
+}
+h5 {
+  margin-bottom: 1%;
+}
