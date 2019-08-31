@@ -17,9 +17,7 @@ class weatherForecast {
     let filtred = cities
       .filter(n => n.city.includes(input))
       .map(v => {
-        (city.innerHTML = v.city),
-          (temp.innerHTML = v.Celcius + CF),
-          (data.innerHTML = v.Data);
+        (city.innerHTML = v.city),(temp.innerHTML = v.Celcius + CF),(data.innerHTML = v.Data);
       });
   }
 }
@@ -36,6 +34,7 @@ weatherForecast.prototype.getconvertTempC = function() {
 };
 
 const myWeather = new weatherForecast();
+console.log(this.temp);
 
 // day and time functions
 function addZero(i) {
