@@ -1,5 +1,5 @@
 //to display the celcius and farhenite option
-let CF = `<sup id="C" onclick="convertTempC()"> &degC |</sup><sup id="F" onclick="convertTempF()">&degF</sup>`;
+let CF = `<sup id="C" onclick="myWeather.convertTempC()"> &degC |</sup><sup id="F" onclick="myWeather.convertTempF()">&degF</sup>`;
 
 //function to retrieve the elements
 class weatherForecast {
@@ -23,7 +23,20 @@ class weatherForecast {
       });
   }
 }
+// to convert C to F and viceversa
+weatherForecast.prototype.convertTempF = function() {
+  let C = this.temp;
+  let Fer = Math.round((C * 9) / 5 + 32);
+  document.getElementById("temp").innerHTML = Fer + CF;
+};
+
+weatherForecast.prototype.convertTempC = function() {
+  let C = this.temp;
+  document.getElementById("temp").innerHTML = C + CF;
+};
+
 const myWeather = new weatherForecast();
+console.log(this.temp);
 
 // day and time functions
 function addZero(i) {
@@ -49,16 +62,4 @@ function Time() {
   var h = addZero(d.getHours());
   var m = addZero(d.getMinutes());
   x.innerHTML = weekdays[weekday_value] + ", " + h + ":" + m;
-}
-
-// to convert C to F and viceversa
-function convertTempF() {
-  let C = myWeather.temp;
-  let Fer = Math.round((C * 9) / 5 + 32);
-  document.getElementById("temp").innerHTML = Fer + CF;
-}
-
-function convertTempC() {
-  let C = myWeather.temp;
-  document.getElementById("temp").innerHTML = C + CF;
 }
