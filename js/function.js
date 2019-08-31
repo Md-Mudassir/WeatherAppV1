@@ -1,5 +1,5 @@
 //to display the celcius and farhenite option
-let CF = `<sup id="C" onclick="myWeather.convertTempC()"> &degC |</sup><sup id="F" onclick="myWeather.convertTempF()">&degF</sup>`;
+let CF = `<sup id="C" onclick="myWeather.getconvertTempC()"> &degC |</sup><sup id="F" onclick="myWeather.getconvertTempF()">&degF</sup>`;
 
 //function to retrieve the elements
 class weatherForecast {
@@ -24,19 +24,18 @@ class weatherForecast {
   }
 }
 // to convert C to F and viceversa
-weatherForecast.prototype.convertTempF = function() {
+weatherForecast.prototype.getconvertTempF = function() {
   let C = this.temp;
   let Fer = Math.round((C * 9) / 5 + 32);
   document.getElementById("temp").innerHTML = Fer + CF;
 };
 
-weatherForecast.prototype.convertTempC = function() {
+weatherForecast.prototype.getconvertTempC = function() {
   let C = this.temp;
   document.getElementById("temp").innerHTML = C + CF;
 };
 
 const myWeather = new weatherForecast();
-console.log(this.temp);
 
 // day and time functions
 function addZero(i) {
