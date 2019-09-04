@@ -1,16 +1,8 @@
 //to display the celcius and farhenite option
-let CF = `<sup id="C" onclick="myWeather.getconvertTempC()"> &degC |</sup><sup id="F" onclick="myWeather.getconvertTempF()">&degF</sup>`;
-let city = document.getElementById("city");
-let data = document.getElementById("data");
-let temp = document.getElementById("temp");
-let input = document.getElementById("pick").value;
+let CF = `<sup id="C" onclick="convertTempC()"> &degC |</sup><sup id="F" onclick="convertTempF()">&degF</sup>`;
+
 //function to retrieve the elements
-class WeatherForecast {
-  constructor() {
-    this.city = city;
-    this.temp = temp;
-    this.data = data;
-  }
+class weatherForecast {
   weatherApp() {
     let cities = [
       { city: "Bangalore, Karnataka", Celcius: 25, Data: "Sunny ☀️" },
@@ -18,37 +10,38 @@ class WeatherForecast {
       { city: "Adoni, Andhra Pradesh", Celcius: 30, Data: "Cloudy ☁️" },
       { city: "Bellary, Karnataka", Celcius: 10, Data: "Fog 🌫️" }
     ];
-
+    let city = document.getElementById("city");
+    let data = document.getElementById("data");
+    this.temp = document.getElementById("temp");
+    this.t = 0;
+    let input = document.getElementById("pick").value;
     let filtred = cities
-      .filter(n => n.city.includes(input))
+      .filter(n => {
+        if (n.city.includes(input)) {
+          this.t = n.Celcius;
+          return n;
+        }
+      })
       .map(v => {
-        (city.innerHTML = v.city),
-          (temp.innerHTML = v.Celcius + CF),
+        ((city.innerHTML = v.city), (this.temp.innerHTML = v.Celcius + CF)),
           (data.innerHTML = v.Data);
       });
   }
 }
 
-const myWeather = new WeatherForecast();
-console.log(this);
+const myWeather = new weatherForecast();
 
-class Myweather2 extends WeatherForecast {
-  constructor() {
-    super();
-    console.log(this.temp);
-  }
-}
 // to convert C to F and viceversa
-WeatherForecast.prototype.getconvertTempF = function() {
-  let C = temp;
+function convertTempF() {
+  let C = myWeather.t;
   let Fer = Math.round((C * 9) / 5 + 32);
   document.getElementById("temp").innerHTML = Fer + CF;
-};
+}
 
-WeatherForecast.prototype.getconvertTempC = function() {
-  let C = temp;
+function convertTempC() {
+  let C = myWeather.t;
   document.getElementById("temp").innerHTML = C + CF;
-};
+}
 
 // day and time functions
 function addZero(i) {
