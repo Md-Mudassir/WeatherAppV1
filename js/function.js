@@ -5,10 +5,15 @@ let CF = `<sup id="C" onclick="convertTempC()"> &degC |</sup><sup id="F" onclick
 class weatherForecast {
   weatherApp() {
     let cities = [
-      { city: "Bangalore, Karnataka", Celcius: 25, Data: "Sunny ☀️" },
-      { city: "Chennai, Tamil Nadu", Celcius: 15, Data: "Rainy 🌧️" },
-      { city: "Adoni, Andhra Pradesh", Celcius: 30, Data: "Cloudy ☁️" },
-      { city: "Bellary, Karnataka", Celcius: 10, Data: "Fog 🌫️" }
+      { city: "Bangalore, Karnataka", Celcius: 25, emoji: "☀️", Data: "Sunny" },
+      { city: "Chennai, Tamil Nadu", Celcius: 15, emoji: "🌧️", Data: "Rainy" },
+      {
+        city: "Adoni, Andhra Pradesh",
+        Celcius: 30,
+        emoji: "☁️",
+        Data: "Cloudy"
+      },
+      { city: "Bellary, Karnataka", Celcius: 40, emoji: " 🌫️", Data: "Fog" }
     ];
     let city = document.getElementById("city");
     let data = document.getElementById("data");
@@ -18,12 +23,14 @@ class weatherForecast {
     let filtred = cities
       .filter(n => {
         if (n.city.includes(input)) {
-          this.t = n.Celcius;
+          this.temprature = n.Celcius;
+          this.emoji = n.emoji;
           return n;
         }
       })
       .map(v => {
-        ((city.innerHTML = v.city), (this.temp.innerHTML = v.Celcius + CF)),
+        ((city.innerHTML = v.city),
+        (this.temp.innerHTML = v.emoji + v.Celcius + CF)),
           (data.innerHTML = v.Data);
       });
   }
@@ -32,27 +39,29 @@ class weatherForecast {
 const myWeather = new weatherForecast();
 
 // to convert C to F and viceversa
-function convertTempF() {
-  let C = myWeather.t;
+convertTempF = () => {
+  let C = myWeather.temprature;
   let Fer = Math.round((C * 9) / 5 + 32);
-  document.getElementById("temp").innerHTML = Fer + CF;
-}
+  document.getElementById(
+    "temp"
+  ).innerHTML = `${myWeather.emoji}  ${Fer}  ${CF}`;
+};
 
-function convertTempC() {
-  let C = myWeather.t;
-  document.getElementById("temp").innerHTML = C + CF;
-}
+convertTempC = () => {
+  let C = myWeather.temprature;
+  document.getElementById("temp").innerHTML = `${myWeather.emoji}  ${C}  ${CF}`;
+};
 
 // day and time functions
-function addZero(i) {
+addZero = i => {
   if (i < 10) {
     i = 0 + i;
   }
   return i;
-}
+};
 
-function Time() {
-  var weekdays = new Array(7);
+Time = () => {
+  let weekdays = new Array(7);
   weekdays[0] = "Sunday";
   weekdays[1] = "Monday";
   weekdays[2] = "Tuesday";
@@ -61,10 +70,10 @@ function Time() {
   weekdays[5] = "Friday";
   weekdays[6] = "Saturday";
 
-  var d = new Date();
+  let d = new Date();
   weekday_value = d.getDay();
-  var x = document.getElementById("date");
-  var h = addZero(d.getHours());
-  var m = addZero(d.getMinutes());
+  let x = document.getElementById("date");
+  let h = addZero(d.getHours());
+  let m = addZero(d.getMinutes());
   x.innerHTML = weekdays[weekday_value] + ", " + h + ":" + m;
-}
+};
