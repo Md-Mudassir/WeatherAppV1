@@ -2,7 +2,7 @@ body {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
-  background-color: rgb(245, 243, 243);
+  /* background-color: rgb(245, 243, 243); */
   font-family: "Lato", sans-serif;
   overflow: hidden;
 }
